@@ -7,23 +7,44 @@
 
 import UIKit
 
-class AlcoholViewController: UINavigationController {
-
+class AlcoholViewController: UIViewController {
+    
+    let alcCounting = BeerAlcohol()
+    
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    @IBOutlet weak var countButton: UIButton!
+    
+    @IBOutlet weak var og: UITextField! // Original Gravity
+    @IBOutlet weak var fg: UITextField! // Final Gravity
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        resultLabel.text = ""
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func countButtonPressed(_ sender: UIButton) {
+        
+        let og = og.text!
+        let fg = fg.text!
+        let result = alcCounting.alcCountingFunc(og: og, fg: fg)
+//        if result == somethingWrong {
+//            wrongData()
+//        }
+        resultLabel.text = (result + "%")
     }
-    */
-
+    
+    func wrongData() {
+        countButton.backgroundColor = UIColor.systemRed
+        countButton.setTitle("Wrong data: error", for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.countButton.backgroundColor = UIColor.systemGreen
+            self.countButton.setTitle("Count", for: .normal)
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+ 
 }

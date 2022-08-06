@@ -9,9 +9,11 @@ import UIKit
 
 class IBUTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var hopNameCustomCell: UILabel! // Hop Name
+    @IBOutlet weak var hopResultCustomCell: UILabel! // IBU
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

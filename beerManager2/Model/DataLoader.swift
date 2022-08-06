@@ -1,6 +1,6 @@
 //
-//  BJCPDecoder.swift
-//  bjcpdecoder
+//  DataLoader.swift
+//  beerManager2
 //
 //  Created by Michał Massloch on 24/08/2021.
 //
@@ -13,22 +13,17 @@ public class DataLoader {
     init(){
         load()
     }
-func load() {
-    
-    if let bundle = Bundle.main.url(forResource: "beerStyles", withExtension: "json") {
-        
-        do {
-            let data = try Data(contentsOf: bundle)
-            let jsonDecoder = JSONDecoder()
-            let dataFromJson = try jsonDecoder.decode([Style].self, from: data)
-            self.beerData = dataFromJson
-
-            
-        } catch {
-            print(error)
+    //Loading data from beerStyles.json
+    func load() {
+        if let bundle = Bundle.main.url(forResource: "beerStyles", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: bundle)
+                let jsonDecoder = JSONDecoder()
+                let dataFromJson = try jsonDecoder.decode([Style].self, from: data)
+                self.beerData = dataFromJson
+            } catch {
+                print(error)
+            }
         }
-}
-
-
-}
+    }
 }

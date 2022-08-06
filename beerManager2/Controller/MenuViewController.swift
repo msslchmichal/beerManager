@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MenuViewController.swift
 //  beerManager2
 //
 //  Created by Michał Massloch on 17/10/2021.
@@ -24,13 +24,10 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "beerManager"
-        
+      
         nagazowanieLabel.layer.shadowRadius = 3
         nagazowanieLabel.layer.shadowOpacity = 1
         nagazowanieLabel.layer.shadowOffset = CGSize(width: 0, height: 4)
-        
-        
         
         gravityButtonLabel.layer.shadowColor = UIColor.black.cgColor
         gravityButtonLabel.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -82,9 +79,6 @@ class MenuViewController: UIViewController {
         testView.layer.shadowOffset = .zero
         testView.layer.shadowRadius = 8
         testView.layer.cornerRadius = 10
-        
-        
-        
-        // Do any additional setup after loading the view.
+
     }
 }
