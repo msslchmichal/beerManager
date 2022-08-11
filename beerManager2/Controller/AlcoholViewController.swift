@@ -12,24 +12,19 @@ class AlcoholViewController: UIViewController {
     let alcCounting = BeerAlcohol()
     
     @IBOutlet weak var resultLabel: UILabel!
-    
     @IBOutlet weak var countButton: UIButton!
-    
     @IBOutlet weak var og: UITextField! // Original Gravity
     @IBOutlet weak var fg: UITextField! // Final Gravity
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         resultLabel.text = ""
     }
     
     @IBAction func countButtonPressed(_ sender: UIButton) {
-        
         let og = og.text!
         let fg = fg.text!
         let result = alcCounting.alcCountingFunc(og: og, fg: fg)
-//        if result == somethingWrong {
-//            wrongData()
-//        }
         resultLabel.text = (result + "%")
     }
     

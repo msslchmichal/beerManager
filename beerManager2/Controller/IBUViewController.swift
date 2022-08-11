@@ -14,16 +14,11 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
         print("newIndex: \(newIndex)")
         arrayOfHops.append(newhop)
         arrayOfResults.append(newResult)
-        print("newhop: \(newhop)")
-        print("arrayOfHops: \(arrayOfHops)")
-        
         let indexPath = IndexPath(row: newIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
-    
-    
     
     @IBOutlet weak var resultLabel: UILabel!
     
@@ -35,8 +30,6 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
         super.viewDidLoad()
         self.registerTableViewCells()
         resultLabel.text = ""
-        print("in IBUViewController viewDidLoad")
-        // Do any additional setup after loading the view.
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

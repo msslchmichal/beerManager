@@ -26,4 +26,6 @@ struct Style: Codable {
     let ibu: String // internation bitterness unit
     
     let prefered_glass: String
+    
+    let color_ebc: String
 }

@@ -29,7 +29,6 @@ class GravityViewController: UIViewController {
         let gravityDouble: String? = gravityTextField.text!
         let temperatureDouble: String? = temperatureTextField.text!
         let result = BeerGravity().gravityCounting(gravity: gravityDouble, temperature: temperatureDouble)
-        print(result)
         if result == BeerGravity.UserDataError.emptyTextField.rawValue || result == BeerGravity.UserDataError.inputIsNotAboveZero.rawValue  || result == BeerGravity.UserDataError.unknownError.rawValue {
             wrongData(error: result)
         }

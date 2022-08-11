@@ -14,12 +14,10 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var alcoholView: UIView!
     @IBOutlet weak var ibuView: UIView!
     @IBOutlet weak var testView: UIView!
-    
     @IBOutlet weak var gravityButtonLabel: UIButton!
     @IBOutlet weak var carbonationButtonLabel: UIButton!
     @IBOutlet weak var alcoholButtonLabel: UIButton!
     @IBOutlet weak var ibuButtonLabel: UIButton!
-    
     @IBOutlet weak var nagazowanieLabel: UILabel!
     
     override func viewDidLoad() {

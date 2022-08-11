@@ -1563,7 +1563,7 @@
     "ibu_min": null,
     "ibu_max": null,
     "color_srm": null,
-    "color_ebc": null,
+    "color_ebc": "to fill",
     "color_min_srm": null,
     "color_max_srm": null,
     "color_min_ebc": null,

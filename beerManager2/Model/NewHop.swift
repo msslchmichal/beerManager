@@ -35,7 +35,6 @@ struct IBUCounting {
         let ibu = Double(weight)! * Double(aa)! * ekstraktywnosc * Double(10/volumeInDouble)
         print("ibu = \(Double(weight)!) * \(Double(aa)!) * \(ekstraktywnosc) * \(Double(10/volumeInDouble))")
         print("ibu: \(ibu)")
-        let ibuString = String(ibu)
         let roundedIBU = String(format: "%.2f", ibu)
         print("roundedIBU: \(roundedIBU)")
         return roundedIBU

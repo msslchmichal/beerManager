@@ -16,7 +16,7 @@ class BeerDetailViewController: UIViewController {
     @IBOutlet weak var abvLabel: UILabel! // Alcohol by volume
     @IBOutlet weak var ibuLabel: UILabel! // IBU
     @IBOutlet weak var glassLabel: UILabel! // Preferred glass
-    
+    @IBOutlet weak var colourLabel: UILabel! // colour in ebc
     
     var selectedBeer: String?
     var name: String!
@@ -27,19 +27,16 @@ class BeerDetailViewController: UIViewController {
     var ab: String! // min-max ABV
     var ibu: String! // min-max IBU
     var glass: String! // preferred glass
+    var colour: String! // colour in ebc
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "NAVBARTITITLE"
-        
-        nameLabel.text = name
-        ogLabel.text = "Ekstrakt początkowy: \(og ?? "default") Blg"
-        fgLabel.text = "Ekstrakt końcowy: \(fg ?? "default") Blg"
-        abvLabel.text = "Zawartość alkoholu: \(ab ?? "default")"
-        ibuLabel.text = "Goryczka: \(ibu ?? "default")"
-        glassLabel.text = "Polecane szkło: \(glass ?? "default")"
-        
+        navigationItem.title = name
+        ogLabel.text = "OG: \(og ?? "default") Blg"
+        fgLabel.text = "FG: \(fg ?? "default") Blg"
+        abvLabel.text = "ABV: \(ab ?? "default")"
+        ibuLabel.text = "IBU: \(ibu ?? "default")"
+        glassLabel.text = "Glass: \(glass ?? "default")"
+        colourLabel.text = "Colour: \(colour ?? "default") °EBC"
     }
 }

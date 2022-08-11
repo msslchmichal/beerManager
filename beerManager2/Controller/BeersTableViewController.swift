@@ -24,13 +24,9 @@ class BeersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = beerData[indexPath.row].name
-
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "Detail", sender: self)
-    }
 //MARK: - Data Passed to DetailVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! BeerDetailViewController
@@ -41,5 +37,6 @@ class BeersTableViewController: UITableViewController {
         detailVC.ab = beerData[selectedRow].abv
         detailVC.ibu = beerData[selectedRow].ibu
         detailVC.glass = beerData[selectedRow].prefered_glass
+        detailVC.colour = beerData[selectedRow].color_ebc
     }
 }
