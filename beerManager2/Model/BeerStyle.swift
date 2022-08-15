@@ -28,4 +28,5 @@ struct Style: Codable {
     let prefered_glass: String
     
     let color_ebc: String
+    let notes: String
 }

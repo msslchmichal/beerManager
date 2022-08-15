@@ -38,5 +38,6 @@ class BeersTableViewController: UITableViewController {
         detailVC.ibu = beerData[selectedRow].ibu
         detailVC.glass = beerData[selectedRow].prefered_glass
         detailVC.colour = beerData[selectedRow].color_ebc
+        detailVC.notes = beerData[selectedRow].notes
     }
 }

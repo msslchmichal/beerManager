@@ -10,13 +10,13 @@ import UIKit
 
 class BeerDetailViewController: UIViewController {
     
-    @IBOutlet weak var nameLabel: UILabel! // name of beer style
     @IBOutlet weak var ogLabel: UILabel! // Original Gravity
     @IBOutlet weak var fgLabel: UILabel! // Final Gravity
     @IBOutlet weak var abvLabel: UILabel! // Alcohol by volume
     @IBOutlet weak var ibuLabel: UILabel! // IBU
     @IBOutlet weak var glassLabel: UILabel! // Preferred glass
     @IBOutlet weak var colourLabel: UILabel! // colour in ebc
+    @IBOutlet weak var notesTextView: UITextView!
     
     var selectedBeer: String?
     var name: String!
@@ -28,6 +28,7 @@ class BeerDetailViewController: UIViewController {
     var ibu: String! // min-max IBU
     var glass: String! // preferred glass
     var colour: String! // colour in ebc
+    var notes: String! //
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,5 +39,6 @@ class BeerDetailViewController: UIViewController {
         ibuLabel.text = "IBU: \(ibu ?? "default")"
         glassLabel.text = "Glass: \(glass ?? "default")"
         colourLabel.text = "Colour: \(colour ?? "default") °EBC"
+        notesTextView.text = notes ?? "default"
     }
 }
