@@ -4,6 +4,7 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
+// TODO: gray add button until all textfields are filled with data
 
 import UIKit
 
@@ -25,14 +26,13 @@ class CarbonationViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.viewDidLoad()
         stylePickerView.dataSource = self
         stylePickerView.delegate = self
-        resultLabel.text = ""
+        resultLabel.text = " "
         sugarIndexChanged(0)
         stylePickerView.selectRow(0, inComponent: 0, animated: true)
     }
     
     @IBAction func sugarIndexChanged(_ sender: Any) {
         sugarIndex = sugarSegmentedControl.selectedSegmentIndex
-        print("sugarIndexChanged to: \(sugarIndex)")
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

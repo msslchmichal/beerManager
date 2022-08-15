@@ -4,7 +4,6 @@
 //
 //  Created by Michał Massloch on 09/01/2022.
 //
-// TODO: image of preferred glass, color in ebc
 
 import UIKit
 
@@ -18,6 +17,9 @@ class BeerDetailViewController: UIViewController {
     @IBOutlet weak var colourLabel: UILabel! // colour in ebc
     @IBOutlet weak var notesTextView: UITextView!
     
+    @IBOutlet weak var glassImageView: UIImageView!
+    
+    
     var selectedBeer: String?
     var name: String!
     var ogMin: String! // minimum Original Gravity
@@ -28,7 +30,12 @@ class BeerDetailViewController: UIViewController {
     var ibu: String! // min-max IBU
     var glass: String! // preferred glass
     var colour: String! // colour in ebc
+    var malt: String!
+    var hop: String!
+    var fermentation: String!
     var notes: String! //
+    var colorImage: String!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +46,7 @@ class BeerDetailViewController: UIViewController {
         ibuLabel.text = "IBU: \(ibu ?? "default")"
         glassLabel.text = "Glass: \(glass ?? "default")"
         colourLabel.text = "Colour: \(colour ?? "default") °EBC"
-        notesTextView.text = notes ?? "default"
+        notesTextView.text = "\(notes ?? "") \n \n Perceived malt: \(malt ?? "") \n \n Perceived hop: \(hop ?? "") \n \n Fermentation: \(fermentation ?? "")"
+        glassImageView.image = UIImage(named: "\(glass ?? "shaker")\(colorImage ?? "10")")
     }
 }

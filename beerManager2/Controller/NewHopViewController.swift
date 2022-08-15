@@ -3,7 +3,7 @@
 //  beerManager2
 //
 //  Created by Michał Massloch on 26/03/2022.
-//
+// TODO: gray add button until all textfields are filled with data
 
 import UIKit
 
@@ -30,6 +30,14 @@ class NewHopViewController: UITableViewController {
         super.viewDidLoad()
     }
 
+    @IBAction func bottomAddButtonPressed(_ sender: UIButton) {
+        let newhop = NewHop(name: hopNameTextField.text!, weight: hopWeightTextField.text!, alphaAcid: hopAlphaAcidTextField.text!, time: hopBoilTimeTextField.text!, gravity: hopGravityOfBatchTexfield.text!, volume: hopVolumeOfBatchTextField.text!)
+        let ibu = IBUCounting().result(weight: hopWeightTextField.text!, gravity: hopGravityOfBatchTexfield.text!, aa: hopAlphaAcidTextField.text!, time: hopBoilTimeTextField.text!, volume: hopVolumeOfBatchTextField.text!)
+        let ibuDouble = Double(ibu)
+        arrayOfHops.append(newhop)
+        arrayOfResults.append(ibuDouble!)
+        delegate?.didFinishAddNewHop(self, didFinish: newhop, didFinish: ibuDouble!)
+    }
     @IBAction func addButtonPressed(_ sender: Any) {
         let newhop = NewHop(name: hopNameTextField.text!, weight: hopWeightTextField.text!, alphaAcid: hopAlphaAcidTextField.text!, time: hopBoilTimeTextField.text!, gravity: hopGravityOfBatchTexfield.text!, volume: hopVolumeOfBatchTextField.text!)
         let ibu = IBUCounting().result(weight: hopWeightTextField.text!, gravity: hopGravityOfBatchTexfield.text!, aa: hopAlphaAcidTextField.text!, time: hopBoilTimeTextField.text!, volume: hopVolumeOfBatchTextField.text!)

@@ -29,4 +29,8 @@ struct Style: Codable {
     
     let color_ebc: String
     let notes: String
+    let perceived_malt: String
+    let perceived_hop: String
+    let fermentation: String
+    let color_image: String
 }

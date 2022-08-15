@@ -4,6 +4,8 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
+// TODO: gray add button until all textfields are filled with data
+
 import UIKit
 
 class GravityViewController: UIViewController {

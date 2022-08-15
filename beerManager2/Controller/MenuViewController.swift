@@ -72,11 +72,11 @@ class MenuViewController: UIViewController {
         ibuView.layer.shadowRadius = 8
         ibuView.layer.cornerRadius = 10
         
-        testView.layer.shadowColor = UIColor.black.cgColor
-        testView.layer.shadowOpacity = 0.8
-        testView.layer.shadowOffset = .zero
-        testView.layer.shadowRadius = 8
-        testView.layer.cornerRadius = 10
+//        testView.layer.shadowColor = UIColor.black.cgColor
+//        testView.layer.shadowOpacity = 0.8
+//        testView.layer.shadowOffset = .zero
+//        testView.layer.shadowRadius = 8
+//        testView.layer.cornerRadius = 10
 
     }
 }

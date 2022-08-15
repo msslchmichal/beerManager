@@ -4,7 +4,7 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
-//TODO: rounding to 2 digits, sum of added hops, model
+// 
 
 import UIKit
 
@@ -63,6 +63,6 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
     }
     func updateResult(x: Double) {
-        resultLabel.text = "RESULT\(x)"
+        resultLabel.text = "RESULT: \(x)"
     }
 }

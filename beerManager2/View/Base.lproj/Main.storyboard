@@ -48,7 +48,7 @@
                                                     <segue destination="wc1-S7-T5X" kind="show" id="sm0-CV-Sg5"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gęstość" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9t-fT-EjX">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gravity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9t-fT-EjX">
                                                 <rect key="frame" x="20" y="35.333333333333343" width="285" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,8 +105,8 @@
                                                     <segue destination="BVv-fw-Pgw" kind="show" id="qrP-13-xFw"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nagazowanie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfc-Oj-fHQ">
-                                                <rect key="frame" x="20" y="33" width="128.33333333333334" height="27.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbonation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfc-Oj-fHQ">
+                                                <rect key="frame" x="19.999999999999993" y="33" width="117.33333333333331" height="27.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -144,7 +144,7 @@
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Alkohol">
+                                                <state key="normal" title="Alcohol">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -217,9 +217,12 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnj-BQ-VhK">
                                                 <rect key="frame" x="20" y="0.0" width="305" height="92.666666666666671"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="10"/>
@@ -230,7 +233,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="qnj-BQ-VhK" secondAttribute="bottom" id="F77-MY-uoe"/>
                                             <constraint firstAttribute="trailing" secondItem="qnj-BQ-VhK" secondAttribute="trailing" id="cqL-tQ-epp"/>
@@ -346,7 +349,7 @@
             </objects>
             <point key="canvasLocation" x="1069" y="1313"/>
         </scene>
-        <!--Alkohol-->
+        <!--Alcohol-->
         <scene sceneID="KMw-dP-dAh">
             <objects>
                 <viewController id="sfo-MY-asK" customClass="AlcoholViewController" customModule="beerManager2" customModuleProvider="target" sceneMemberID="viewController">
@@ -355,15 +358,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="yaL-F1-Rgv">
-                                <rect key="frame" x="10" y="140" width="355" height="178.33333333333337"/>
+                                <rect key="frame" x="10" y="147.66666666666663" width="355" height="178.33333333333337"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="og" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7l-3k-T3o">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Original gravity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7l-3k-T3o">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="fg" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5oX-vt-4RA">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Final gravity" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5oX-vt-4RA">
                                         <rect key="frame" x="0.0" y="52" width="355" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -374,7 +377,7 @@
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Count">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" systemColor="systemGray5Color"/>
                                         </state>
@@ -383,7 +386,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts1-lI-Ym7">
-                                        <rect key="frame" x="0.0" y="158" width="355" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="158.00000000000003" width="355" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -399,7 +402,7 @@
                             <constraint firstItem="yaL-F1-Rgv" firstAttribute="leading" secondItem="Bpg-Ip-OC7" secondAttribute="leading" constant="10" id="xcq-7w-qGG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Alkohol" id="bKx-xB-N8g"/>
+                    <navigationItem key="navigationItem" title="Alcohol" id="bKx-xB-N8g"/>
                     <connections>
                         <outlet property="countButton" destination="IBc-RY-8la" id="3V0-qz-PXP"/>
                         <outlet property="fg" destination="5oX-vt-4RA" id="wUc-g7-md4"/>
@@ -442,7 +445,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="IBU" id="QKl-x6-jhy">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Day-cG-mPJ">
+                        <barButtonItem key="rightBarButtonItem" title="Add new hop" id="Day-cG-mPJ">
                             <connections>
                                 <action selector="addButtonPressed:" destination="8ey-dz-gU9" id="iUh-Rp-lcm"/>
                                 <segue destination="uDP-gQ-CUx" kind="show" identifier="addItem" id="IjY-3m-BRZ"/>
@@ -457,7 +460,7 @@
             </objects>
             <point key="canvasLocation" x="4982" y="-220"/>
         </scene>
-        <!--Gęstość-->
+        <!--Gravity-->
         <scene sceneID="HLS-c0-lHu">
             <objects>
                 <viewController id="wc1-S7-T5X" customClass="GravityViewController" customModule="beerManager2" customModuleProvider="target" sceneMemberID="viewController">
@@ -468,13 +471,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="suG-N6-lnc">
                                 <rect key="frame" x="10" y="147.66666666666663" width="355" height="178.33333333333337"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wpisz zmierzoną gęstość" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2t-MP-yO3">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gravity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2t-MP-yO3">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wpisz zmierzoną temperaturę" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vy0-Pp-4fq">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Temperature" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vy0-Pp-4fq">
                                         <rect key="frame" x="0.0" y="52" width="355" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -485,7 +488,7 @@
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Oblicz">
+                                        <state key="normal" title="Count">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -515,7 +518,7 @@
                             <constraint firstItem="suG-N6-lnc" firstAttribute="top" secondItem="BhU-9T-KIU" secondAttribute="top" id="dve-3q-ff9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Gęstość" id="cu3-gS-16Z">
+                    <navigationItem key="navigationItem" title="Gravity" id="cu3-gS-16Z">
                         <barButtonItem key="backBarButtonItem" title="Menu" id="3Pn-dY-fdu"/>
                     </navigationItem>
                     <connections>
@@ -529,7 +532,7 @@
             </objects>
             <point key="canvasLocation" x="2836" y="-220"/>
         </scene>
-        <!--Nagazowanie-->
+        <!--Carbonation-->
         <scene sceneID="KkD-cV-Gwh">
             <objects>
                 <viewController id="BVv-fw-Pgw" customClass="CarbonationViewController" customModule="beerManager2" customModuleProvider="target" sceneMemberID="viewController">
@@ -543,8 +546,8 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-Td-9S3">
                                         <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                         <segments>
-                                            <segment title="Cukier biały"/>
-                                            <segment title="Glukoza"/>
+                                            <segment title="Sugar"/>
+                                            <segment title="Glucose"/>
                                         </segments>
                                         <connections>
                                             <action selector="sugarIndexChanged:" destination="BVv-fw-Pgw" eventType="valueChanged" id="GIW-PS-0ix"/>
@@ -553,13 +556,13 @@
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxJ-sq-pb8">
                                         <rect key="frame" x="27.666666666666657" y="52" width="320" height="291.66666666666669"/>
                                     </pickerView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ilość do pakowania w litrach" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcZ-xb-UgU">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Liters to bottle" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcZ-xb-UgU">
                                         <rect key="frame" x="15" y="353.66666666666669" width="345" height="45.666666666666686"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Temperatura pakowania" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z7o-CM-oIE">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Temperature of beer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z7o-CM-oIE">
                                         <rect key="frame" x="15" y="409.33333333333337" width="345" height="46"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -570,7 +573,7 @@
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Oblicz">
+                                        <state key="normal" title="Count">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -606,7 +609,7 @@
                             <constraint firstItem="acb-v7-jVq" firstAttribute="bottom" secondItem="vPo-a9-tlA" secondAttribute="bottom" constant="10" id="oIX-iM-jIm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Nagazowanie" id="7xO-V6-rUi"/>
+                    <navigationItem key="navigationItem" title="Carbonation" id="7xO-V6-rUi"/>
                     <connections>
                         <outlet property="amountToBottle" destination="BcZ-xb-UgU" id="Sv7-ZB-oFx"/>
                         <outlet property="resultLabel" destination="ozU-y0-G8I" id="Dhp-Mh-IWa"/>
@@ -627,6 +630,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" id="e4X-up-qVL">
+                            <rect key="frame" x="0.0" y="333.33332443237305" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Add" titleAlignment="center">
+                                <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="bottomAddButtonPressed:" destination="uDP-gQ-CUx" eventType="touchUpInside" id="hgr-YU-8jG"/>
+                            </connections>
+                        </button>
                         <sections>
                             <tableViewSection headerTitle="Hop data" id="l1t-cF-L7T">
                                 <cells>
@@ -782,7 +797,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qkw-NM-Z6k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5764" y="-931"/>
+            <point key="canvasLocation" x="4982" y="-899"/>
         </scene>
     </scenes>
     <resources>
