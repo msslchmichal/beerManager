@@ -13,7 +13,9 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
         let newIndex = arrayOfHops.count
         print("newIndex: \(newIndex)")
         arrayOfHops.append(newhop)
+        print("arrayOfHops.append(newhop): \(newhop)")
         arrayOfResults.append(newResult)
+        print("arrayOfResults.append(newResult): \(newResult)")
         let indexPath = IndexPath(row: newIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         tableView.reloadData()
@@ -41,8 +43,7 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "IBUTableViewCell") as? IBUTableViewCell {
             cell.hopNameCustomCell?.text = arrayOfHops[indexPath.row].name
             cell.hopResultCustomCell?.text = String(arrayOfResults[indexPath.row])
-            let sum = arrayOfResults.reduce(0, +)
-            updateResult(x:Double(sum))
+            updateResult(resultValue:Double(arrayOfResults.reduce(0, +)))
             return cell
         }
         return UITableViewCell()
@@ -62,7 +63,7 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
     }
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
     }
-    func updateResult(x: Double) {
-        resultLabel.text = "RESULT: \(x)"
+    func updateResult(resultValue: Double) {
+        resultLabel.text = "RESULT: \(resultValue)"
     }
 }
