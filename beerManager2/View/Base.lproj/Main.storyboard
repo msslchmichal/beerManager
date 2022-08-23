@@ -337,13 +337,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Final gravity" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5oX-vt-4RA">
                                         <rect key="frame" x="0.0" y="52" width="355" height="34"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBc-RY-8la">
                                         <rect key="frame" x="0.0" y="104" width="355" height="36"/>
@@ -383,8 +383,8 @@
                     <navigationItem key="navigationItem" title="Alcohol" id="bKx-xB-N8g"/>
                     <connections>
                         <outlet property="countButton" destination="IBc-RY-8la" id="3V0-qz-PXP"/>
-                        <outlet property="fg" destination="5oX-vt-4RA" id="wUc-g7-md4"/>
-                        <outlet property="og" destination="w7l-3k-T3o" id="6ek-c7-0FQ"/>
+                        <outlet property="fgTextField" destination="5oX-vt-4RA" id="wUc-g7-md4"/>
+                        <outlet property="ogTextField" destination="w7l-3k-T3o" id="6ek-c7-0FQ"/>
                         <outlet property="resultLabel" destination="ts1-lI-Ym7" id="I9s-LH-kM3"/>
                     </connections>
                 </viewController>

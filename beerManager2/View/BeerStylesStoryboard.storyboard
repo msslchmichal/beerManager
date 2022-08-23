@@ -189,9 +189,12 @@
                         <outlet property="fgLabel" destination="nF7-xa-wey" id="Lmx-ii-Eg1"/>
                         <outlet property="glassImageView" destination="dfp-b6-HDR" id="j0l-QE-VEt"/>
                         <outlet property="glassLabel" destination="d4T-V6-w6G" id="npU-AA-ByJ"/>
+                        <outlet property="glassView" destination="lje-ub-GwR" id="Zkc-Be-BQB"/>
                         <outlet property="ibuLabel" destination="EDH-2j-O1E" id="G0m-63-FGX"/>
                         <outlet property="notesTextView" destination="9Sv-8C-wo5" id="Dm5-Ci-TY7"/>
                         <outlet property="ogLabel" destination="Llx-5v-USm" id="wRG-6Q-tKD"/>
+                        <outlet property="simpleDetailView" destination="jch-3h-W2S" id="wrk-3O-aCq"/>
+                        <outlet property="textView" destination="cfL-EW-DLN" id="jL6-4C-yCk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VkY-He-ca5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

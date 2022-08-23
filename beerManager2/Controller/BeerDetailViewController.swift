@@ -19,6 +19,10 @@ class BeerDetailViewController: UIViewController {
     
     @IBOutlet weak var glassImageView: UIImageView!
     
+
+    @IBOutlet weak var simpleDetailView: UIView!
+    @IBOutlet weak var glassView: UIView!
+    @IBOutlet weak var textView: UIView!
     
     var selectedBeer: String?
     var name: String!
@@ -40,6 +44,15 @@ class BeerDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = name
+        let views: [UIView] = [simpleDetailView,glassView,textView]
+        for view in views {
+            view.layer.shadowColor = UIColor.black.cgColor
+            view.layer.shadowOffset = .zero
+            view.layer.shadowRadius = 10
+            view.layer.shadowOpacity = 0.2
+            view.layer.cornerRadius = 10
+            //view.layer.masksToBounds = false
+        }
         ogLabel.text = "OG: \(og ?? "default") Blg"
         fgLabel.text = "FG: \(fg ?? "default") Blg"
         abvLabel.text = "ABV: \(ab ?? "default")"

@@ -4,7 +4,6 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
-// TODO: gray add button until all textfields are filled with data
 
 import UIKit
 
@@ -14,24 +13,55 @@ class AlcoholViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var countButton: UIButton!
-    @IBOutlet weak var og: UITextField! // Original Gravity
-    @IBOutlet weak var fg: UITextField! // Final Gravity
+    @IBOutlet weak var ogTextField: UITextField! // Original Gravity
+    @IBOutlet weak var fgTextField: UITextField! // Final Gravity
     
     override func viewDidLoad() {
         super.viewDidLoad()
         resultLabel.text = ""
+        countButton.backgroundColor = UIColor.systemGray
+        countButton.isEnabled = false
+        
+        [ogTextField, fgTextField].forEach { (field) in
+            field?.addTarget(self,
+                             action: #selector(editingChanged(_:)),
+                             for: .editingChanged)
+        }
+    }
+    
+    @objc private func editingChanged(_ textField: UITextField) {
+        
+        guard
+            let og = ogTextField.text, !og.isEmpty,
+            let fg = fgTextField.text, !fg.isEmpty
+        else {
+            countButton.isEnabled = false
+            countButton.backgroundColor = UIColor.systemGray
+            return
+        }
+        countButton.isEnabled = true
+        countButton.backgroundColor = UIColor.systemGreen
     }
     
     @IBAction func countButtonPressed(_ sender: UIButton) {
-        let og = og.text!
-        let fg = fg.text!
+        let og = ogTextField.text!
+        let fg = fgTextField.text!
         let result = alcCounting.alcCountingFunc(og: og, fg: fg)
-        resultLabel.text = (result + "%")
+        let error = BeerAlcohol.UserDataError.self
+        if  result == error.emptyTextField.rawValue ||
+            result == error.inputIsNotAboveZero.rawValue ||
+            result == error.unknownError.rawValue ||
+            result == error.sameOGandFG.rawValue {
+            wrongData(error: result)
+        }
+        else {
+            resultLabel.text = (result + "%")
+        }
     }
     
-    func wrongData() {
+    func wrongData(error: String) {
         countButton.backgroundColor = UIColor.systemRed
-        countButton.setTitle("Wrong data: error", for: .normal)
+        countButton.setTitle("Wrong data: \(error)", for: .normal)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.countButton.backgroundColor = UIColor.systemGreen
             self.countButton.setTitle("Count", for: .normal)
@@ -42,5 +72,4 @@ class AlcoholViewController: UIViewController {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
- 
 }

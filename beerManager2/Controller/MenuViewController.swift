@@ -25,9 +25,9 @@ class MenuViewController: UIViewController {
         let views: [UIView] = [gravityView,carbonationView,alcoholView,ibuView]
         for view in views {
             view.layer.shadowColor = UIColor.black.cgColor
-            view.layer.shadowOpacity = 0.8
+            view.layer.shadowOpacity = 0.5
             view.layer.shadowOffset = .zero
-            view.layer.shadowRadius = 8
+            view.layer.shadowRadius = 10
             view.layer.cornerRadius = 10
         }
         
