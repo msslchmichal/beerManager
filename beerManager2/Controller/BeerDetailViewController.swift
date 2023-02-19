@@ -47,9 +47,9 @@ class BeerDetailViewController: UIViewController {
         let views: [UIView] = [simpleDetailView,glassView,textView]
         for view in views {
             view.layer.shadowColor = UIColor.black.cgColor
-            view.layer.shadowOffset = .zero
-            view.layer.shadowRadius = 10
-            view.layer.shadowOpacity = 0.2
+            view.layer.shadowOffset = CGSize(width: 0, height: 6)
+            view.layer.shadowRadius = 7
+            view.layer.shadowOpacity = 0.3
             view.layer.cornerRadius = 10
             //view.layer.masksToBounds = false
         }

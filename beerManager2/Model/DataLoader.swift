@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class DataLoader {
+class DataLoader {
     var beerData = [Style]()
     
     init(){
