@@ -7,27 +7,43 @@
 
 import UIKit
 
-class BeersTableViewController: UITableViewController {
+class BeersTableViewController: UIViewController {
     
-    let beerData = DataLoader().beerData
+    @IBOutlet var tableView: UITableView!
     
+    var beerData = [Style]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchLocalData()
     }
     
-//MARK: - BeersTableVC Table View methods
+    func fetchLocalData() {
+        let loadFile = JSONParser<[Style]>()
+        let result = loadFile.parseLocalFile(named: "beerStyles")
+        switch result {
+        case.success(let response):
+            self.beerData = response
+            self.tableView.reloadData()
+        case.failure(let error):
+            print("error: \(error.localizedDescription)")
+        }
+    }
+}
+
+extension BeersTableViewController: UITableViewDataSource {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //MARK: - BeersTableViewController Table View methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return beerData.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = beerData[indexPath.row].name
         return cell
     }
     
-//MARK: - Data Passed to DetailVC
+    //MARK: - Data Passed to BeerDetailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! BeerDetailViewController
         let selectedRow = tableView.indexPathForSelectedRow!.row

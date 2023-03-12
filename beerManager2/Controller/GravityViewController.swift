@@ -4,11 +4,13 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
-// TODO: gray add button until all textfields are filled with data
+// TODO: navigation bar background image, results to CoreData
 
 import UIKit
 
 class GravityViewController: UIViewController {
+    
+    let gravityCounting = BeerGravity()
     
     @IBOutlet weak var gravityTextField: UITextField!
     @IBOutlet weak var temperatureTextField: UITextField!
@@ -17,34 +19,39 @@ class GravityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewdidload")
-        resultLabel.text = ""
+        loadMetricSystem()
+
+        countButton.backgroundColor = .systemGray
+        countButton.isEnabled = false
+        
+        resultLabel.text = " "
+        
+        [gravityTextField, temperatureTextField].forEach { field in
+            field?.addTarget(self, action: #selector(editingChanged(_:)), for: .editingChanged)
+        }
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
+        
+    @objc private func editingChanged(_ textField: UITextField) {
+        guard let gravityTextField = gravityTextField, let temperatureTextField = temperatureTextField
+        else { return }
+        let textFields = [gravityTextField, temperatureTextField]
+        textFields.enableButton(countButton)
     }
     
     @IBAction func countButtonPressed(_ sender: UIButton) {
+        let gravity = gravityTextField.text!
+        let temperature = temperatureTextField.text!
         
-        let gravityDouble: String? = gravityTextField.text!
-        let temperatureDouble: String? = temperatureTextField.text!
-        let result = BeerGravity().gravityCounting(gravity: gravityDouble, temperature: temperatureDouble)
-        if result == BeerGravity.UserDataError.emptyTextField.rawValue || result == BeerGravity.UserDataError.inputIsNotAboveZero.rawValue  || result == BeerGravity.UserDataError.unknownError.rawValue {
-            wrongData(error: result)
-        }
-        else {
-            resultLabel.text = "Correct gravity: \(result)"
+        switch gravityCounting.calculateCorrectGravity(gravity: gravity, temperature: temperature) {
+        case .success(let result):
+            resultLabel.text = "\(String(format: "%.2f", result)) Blg"
+        case .failure(let error):
+            wrongData(error: error.rawValue, countButton: countButton)
         }
     }
-    
-    func wrongData(error: String) {
-        countButton.backgroundColor = UIColor.systemRed
-        countButton.setTitle("Wrong data: \(error)", for: .normal)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.countButton.backgroundColor = UIColor.systemGreen
-            self.countButton.setTitle("Count", for: .normal)
-        }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
 }

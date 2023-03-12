@@ -9,34 +9,27 @@ import Foundation
 
 struct BeerGravity {
     
-//    let gravity: String?
-//    let temperature: String?
-    
-    enum UserDataError: String {
+    enum UserDataError: String, Error {
         case inputIsNotAboveZero = "Input is not above 0"
         case emptyTextField = "Empty texfield"
         case unknownError = "Unknown error"
     }
     
-    func gravityCounting(gravity: String?, temperature: String?) -> String {
+    func calculateCorrectGravity(gravity: String?, temperature: String?) -> Result<Double, UserDataError> {
 
-        guard let unwrappedGravity = gravity, let unwrappedTemperature = temperature else {
-            return UserDataError.emptyTextField.rawValue
-        }
-        guard let unwrappedGravityDouble = Double(unwrappedGravity), let unwrappedTemperatureDouble = Double(unwrappedTemperature)  else {
-            return UserDataError.unknownError.rawValue
-        }
+        guard let gravity = gravity, let temperature = temperature
+            else { return .failure(.emptyTextField) }
         
-        if unwrappedGravityDouble > 0.0 && unwrappedTemperatureDouble > 0.0 {
+        guard let gravityDouble = Double(gravity), let temperatureDouble = Double(temperature)
+            else { return .failure(.unknownError) }
+        
+        switch (gravityDouble,temperatureDouble) {
+        case (-0.1,_),(_,0.0):
+            return .failure(.inputIsNotAboveZero)
+        case let (gravity, temperature):
             let x = 0.075
-            let result = String( ((unwrappedTemperatureDouble-20)*x)+unwrappedGravityDouble)
-            return result
-        }
-        else if unwrappedGravityDouble <= 0.0 || unwrappedTemperatureDouble <= 0.0 {
-            return UserDataError.inputIsNotAboveZero.rawValue
-        }
-        else {
-            return UserDataError.unknownError.rawValue
+            let result = ((temperature-20)*x)+gravity
+            return .success(result)
         }
     }
 }

@@ -3,7 +3,7 @@
 //  beerManager2
 //
 //  Created by Michał Massloch on 26/03/2022.
-// TODO: result
+// TODO: refactor bottomAddButtonPressed -> addToCoreData to .result .failure and WrongData extension
 
 import UIKit
 
@@ -12,10 +12,7 @@ protocol NewHopViewControllerDelegate: AnyObject {
 }
 
 class NewHopViewController: UIViewController {
-    
-    var arrayOfHops: [NewHop] = []
-    var arrayOfResults: [Double] = []
-    
+        
     @IBOutlet weak var hopNameTextField: UITextField!
     @IBOutlet weak var hopWeightTextField: UITextField!
     @IBOutlet weak var hopAlphaAcidTextField: UITextField!
@@ -25,12 +22,13 @@ class NewHopViewController: UIViewController {
     @IBOutlet weak var bottomAddButton: UIButton!
     
     var hop: Hop?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var delegate: NewHopViewControllerDelegate?
+    var coreDataManager: CoreDataManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bottomAddButton.backgroundColor = UIColor.systemGray
+        
+        bottomAddButton.backgroundColor = .systemGray
         bottomAddButton.isEnabled = false
         
         [hopNameTextField, hopWeightTextField, hopAlphaAcidTextField, hopBoilTimeTextField, hopGravityOfBatchTexfield, hopVolumeOfBatchTextField].forEach { (field) in
@@ -41,68 +39,57 @@ class NewHopViewController: UIViewController {
     }
     
     @objc private func editingChanged(_ textField: UITextField) {
-        
-        guard
-            let hopName = hopNameTextField.text, !hopName.isEmpty,
-            let hopWeight = hopWeightTextField.text, !hopWeight.isEmpty,
-            let hopAlphaAcid = hopAlphaAcidTextField.text, !hopAlphaAcid.isEmpty,
-            let hopBoilTime = hopBoilTimeTextField.text, !hopBoilTime.isEmpty,
-            let hopGravity = hopGravityOfBatchTexfield.text, !hopGravity.isEmpty,
-            let hopVolume = hopVolumeOfBatchTextField.text, !hopVolume.isEmpty
-        else {
-            bottomAddButton.isEnabled = false
-            bottomAddButton.backgroundColor = UIColor.systemGray
-            return
-        }
-        bottomAddButton.isEnabled = true
-        bottomAddButton.backgroundColor = UIColor.systemGreen
+        guard let hopNameTextField = hopNameTextField,
+              let hopWeightTextField = hopWeightTextField,
+              let hopAlphaAcidTextField = hopAlphaAcidTextField,
+              let hopBoilTimeTextField = hopBoilTimeTextField,
+              let hopGravityOfBatchTexfield = hopGravityOfBatchTexfield,
+              let hopVolumeOfBatchTextField = hopVolumeOfBatchTextField
+        else { return }
+        let textFields = [hopNameTextField, hopWeightTextField, hopAlphaAcidTextField, hopBoilTimeTextField, hopGravityOfBatchTexfield, hopVolumeOfBatchTextField]
+        textFields.enableButton(bottomAddButton)
     }
     
     func addToCoreData() {
-        let newHop = Hop(context: self.context)
-        newHop.name = self.hopNameTextField.text!
-        newHop.weight = self.hopWeightTextField.text!
-        newHop.alphaAcid = self.hopAlphaAcidTextField.text!
-        newHop.time = self.hopBoilTimeTextField.text!
-        newHop.gravity = self.hopGravityOfBatchTexfield.text!
-        newHop.volume = self.hopVolumeOfBatchTextField.text!
-        let result = {
-            guard let unwWeight = self.hopWeightTextField.text, let unwGravity = self.hopGravityOfBatchTexfield.text, let unwAa = self.hopAlphaAcidTextField.text, let unwTime = self.hopBoilTimeTextField.text, let unwVolume = self.hopVolumeOfBatchTextField.text else {
-                return "empty textfield"
-            }
-            
-            guard let weightDouble = Double(unwWeight), let gravityDouble = Double(unwGravity), let aaDouble = Double(unwAa), let timeDouble = Double(unwTime), let volumeDouble = Double(unwVolume) else {
-                return "unknown error"
-            }
-            
-            let platoToSG = 1+(gravityDouble/(258.6-((gravityDouble/258.2)*227.1)))
-            print("platoToSG: \(platoToSG)")
-            let fg = 1.65 * pow(0.000125, platoToSG-1)
-            print("fg \(fg)")
-            let ft = (1-pow(2.718281828459, (-0.04*timeDouble)))/4.15
-            print("ft \(ft)")
-            let ekstraktywnosc = fg*ft
-            print(ekstraktywnosc)
-            let ibu = weightDouble * aaDouble * ekstraktywnosc * Double(10/volumeDouble)
-            print("ibu = \(weightDouble) * \(aaDouble) * \(ekstraktywnosc) * \(Double(10/volumeDouble))")
-            print("ibu: \(ibu)")
-            let roundedIBU = String(format: "%.2f", ibu)
-            print("roundedIBU: \(roundedIBU)")
-            return roundedIBU
-        }
-        newHop.result = result()
-        self.delegate?.add(self, didFinish: newHop)
+        let newHop = coreDataManager.createHop()
+        guard let hopName = hopNameTextField.text,
+              let hopWeight = hopWeightTextField.text,
+              let hopAlphaAcid = hopAlphaAcidTextField.text,
+              let hopBoilTime = hopBoilTimeTextField.text,
+              let hopGravity = hopGravityOfBatchTexfield.text,
+              let hopVolume = hopVolumeOfBatchTextField.text,
+              let weight = Double(hopWeight),
+              let gravity = Double(hopGravity),
+              let alphaAcid = Double(hopAlphaAcid),
+              let time = Double(hopBoilTime),
+              let volume = Double(hopVolume)
+        else { return }
         
+        let platoToSG = 1 + (gravity / (258.6 - ((gravity / 258.2) * 227.1)))
+        let fg = 1.65 * pow(0.000125, platoToSG - 1)
+        let ft = (1 - pow(2.718281828459, (-0.04 * time))) / 4.15
+        let ibu = weight * alphaAcid * fg * ft * Double(10 / volume)
+        let roundedIBU = String(format: "%.2f", ibu)
+
+        newHop.name = hopName
+        newHop.weight = hopWeight
+        newHop.alphaAcid = hopAlphaAcid
+        newHop.time = hopBoilTime
+        newHop.gravity = hopGravity
+        newHop.volume = hopVolume
+        newHop.result = roundedIBU
+        delegate?.add(self, didFinish: newHop)
     }
-    func wrongData(/**/) {
-        bottomAddButton.backgroundColor = UIColor.systemRed
+    
+    func wrongData() {
+        bottomAddButton.backgroundColor = .systemRed
         bottomAddButton.setTitle("Wrong data:", for: .normal)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.bottomAddButton.backgroundColor = UIColor.systemGray
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.bottomAddButton.backgroundColor = .systemGray
             self.bottomAddButton.setTitle("Add", for: .normal)
         }
     }
-    
+        
     @IBAction func bottomAddButtonPressed(_ sender: UIButton) {
         addToCoreData()
     }

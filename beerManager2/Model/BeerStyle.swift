@@ -7,7 +7,7 @@
 
 import Foundation
 
-//struct for Beer style used in BeersTableVC n BeerDetailVC
+//struct for Beer style used in BeersTableVC ann BeerDetailVC
 
 struct Style: Codable {
     let id: Int

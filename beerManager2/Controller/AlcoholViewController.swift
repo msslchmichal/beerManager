@@ -4,6 +4,7 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
+// TODO: navigation bar background image, results to CoreData
 
 import UIKit
 
@@ -11,15 +12,17 @@ class AlcoholViewController: UIViewController {
     
     let alcCounting = BeerAlcohol()
     
-    @IBOutlet weak var resultLabel: UILabel!
-    @IBOutlet weak var countButton: UIButton!
-    @IBOutlet weak var ogTextField: UITextField! // Original Gravity
-    @IBOutlet weak var fgTextField: UITextField! // Final Gravity
+    @IBOutlet weak private var resultLabel: UILabel!
+    @IBOutlet weak private var countButton: UIButton!
+    @IBOutlet weak private var ogTextField: UITextField! // Original Gravity
+    @IBOutlet weak private var fgTextField: UITextField! // Final Gravity
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        loadMetricSystem()
         resultLabel.text = ""
-        countButton.backgroundColor = UIColor.systemGray
+        countButton.backgroundColor = .systemGray
         countButton.isEnabled = false
         
         [ogTextField, fgTextField].forEach { (field) in
@@ -28,46 +31,26 @@ class AlcoholViewController: UIViewController {
                              for: .editingChanged)
         }
     }
-    
-    @objc private func editingChanged(_ textField: UITextField) {
         
-        guard
-            let og = ogTextField.text, !og.isEmpty,
-            let fg = fgTextField.text, !fg.isEmpty
-        else {
-            countButton.isEnabled = false
-            countButton.backgroundColor = UIColor.systemGray
-            return
-        }
-        countButton.isEnabled = true
-        countButton.backgroundColor = UIColor.systemGreen
+    @objc private func editingChanged(_ textField: UITextField) {
+        guard let ogTextField = ogTextField, let fgTextField = fgTextField
+        else { return }
+        let textFields = [ogTextField, fgTextField]
+        textFields.enableButton(countButton)
     }
     
     @IBAction func countButtonPressed(_ sender: UIButton) {
         let og = ogTextField.text!
         let fg = fgTextField.text!
-        let result = alcCounting.alcCountingFunc(og: og, fg: fg)
-        let error = BeerAlcohol.UserDataError.self
-        if  result == error.emptyTextField.rawValue ||
-            result == error.inputIsNotAboveZero.rawValue ||
-            result == error.unknownError.rawValue ||
-            result == error.sameOGandFG.rawValue {
-            wrongData(error: result)
-        }
-        else {
-            resultLabel.text = (result + "%")
+        
+        switch alcCounting.calculateAlcoholPercentage(og: og, fg: fg) {
+        case .success(let result):
+            resultLabel.text = "\(String(format: "%.2f", result))%"
+        case .failure(let error):
+            wrongData(error: error.rawValue, countButton: countButton)
         }
     }
-    
-    func wrongData(error: String) {
-        countButton.backgroundColor = UIColor.systemRed
-        countButton.setTitle("Wrong data: \(error)", for: .normal)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.countButton.backgroundColor = UIColor.systemGreen
-            self.countButton.setTitle("Count", for: .normal)
-        }
-    }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)

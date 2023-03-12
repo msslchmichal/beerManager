@@ -259,12 +259,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TB4-cr-ynW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5924" y="-220"/>
+            <point key="canvasLocation" x="5834" y="-220"/>
         </scene>
-        <!--Kalkulatory-->
+        <!--Calculators-->
         <scene sceneID="wlb-CG-P85">
             <objects>
-                <navigationController title="Kalkulatory" automaticallyAdjustsScrollViewInsets="NO" id="owG-O5-JDG" sceneMemberID="viewController">
+                <navigationController title="Calculators" automaticallyAdjustsScrollViewInsets="NO" id="owG-O5-JDG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Calculators" image="square.grid.3x3.topright.filled" catalog="system" id="sIA-3m-kr4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="vfX-r9-0Lc">
@@ -351,7 +351,7 @@
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Count">
+                                        <state key="normal" title="Calculate">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" systemColor="systemGray5Color"/>
                                         </state>
@@ -451,7 +451,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="suG-N6-lnc">
-                                <rect key="frame" x="10" y="155" width="410" height="178.33333333333337"/>
+                                <rect key="frame" x="10" y="170" width="410" height="178.33333333333337"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gravity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2t-MP-yO3">
                                         <rect key="frame" x="0.0" y="0.0" width="410" height="34"/>
@@ -470,7 +470,7 @@
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Count">
+                                        <state key="normal" title="Calculate">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -497,11 +497,13 @@
                         <constraints>
                             <constraint firstItem="BhU-9T-KIU" firstAttribute="trailing" secondItem="suG-N6-lnc" secondAttribute="trailing" constant="10" id="6gL-ub-KTU"/>
                             <constraint firstItem="suG-N6-lnc" firstAttribute="leading" secondItem="BhU-9T-KIU" secondAttribute="leading" constant="10" id="Qtz-NG-zaf"/>
-                            <constraint firstItem="suG-N6-lnc" firstAttribute="top" secondItem="BhU-9T-KIU" secondAttribute="top" id="dve-3q-ff9"/>
+                            <constraint firstItem="suG-N6-lnc" firstAttribute="top" secondItem="BhU-9T-KIU" secondAttribute="top" constant="15" id="dve-3q-ff9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Gravity" id="cu3-gS-16Z">
-                        <barButtonItem key="backBarButtonItem" title="Menu" id="3Pn-dY-fdu"/>
+                        <barButtonItem key="backBarButtonItem" title="Menu" id="3Pn-dY-fdu">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="countButton" destination="fw4-8X-Lkn" id="bKB-MN-hJ6"/>
@@ -555,7 +557,7 @@
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Count">
+                                        <state key="normal" title="Calculate">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -599,6 +601,7 @@
                     <navigationItem key="navigationItem" title="Carbonation" id="7xO-V6-rUi"/>
                     <connections>
                         <outlet property="amountToBottle" destination="BcZ-xb-UgU" id="Sv7-ZB-oFx"/>
+                        <outlet property="countButton" destination="He3-2g-dmt" id="nq1-SC-U3c"/>
                         <outlet property="resultLabel" destination="ozU-y0-G8I" id="Dhp-Mh-IWa"/>
                         <outlet property="stylePickerView" destination="lxJ-sq-pb8" id="Agt-J4-FqF"/>
                         <outlet property="sugarSegmentedControl" destination="fSO-Td-9S3" id="Rno-fJ-qFc"/>
@@ -609,17 +612,23 @@
             </objects>
             <point key="canvasLocation" x="3535" y="-220"/>
         </scene>
-        <!--Hop Info-->
+        <!--Hop Detail-->
         <scene sceneID="djK-AO-n1F">
             <objects>
-                <viewController title="Hop Info" id="Rxu-Vz-9is" customClass="HopDetailViewController" customModule="beerManager2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3q0-o4-67C">
+                <viewController title="Hop Detail" id="Rxu-Vz-9is" customClass="HopDetailViewController" customModule="beerManager2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Jun-W7-0mW">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="fee-aZ-lG4"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
+                        <connections>
+                            <outlet property="dataSource" destination="Rxu-Vz-9is" id="lhn-ix-kL6"/>
+                            <outlet property="delegate" destination="Rxu-Vz-9is" id="WTr-IT-SrA"/>
+                        </connections>
+                    </tableView>
                     <navigationItem key="navigationItem" title="Name" id="e38-tJ-APD"/>
+                    <connections>
+                        <outlet property="tableView" destination="Jun-W7-0mW" id="o35-aL-IMQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4t-fq-lfk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

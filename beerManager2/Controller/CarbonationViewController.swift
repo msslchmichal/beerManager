@@ -4,7 +4,7 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
-// TODO: gray add button until all textfields are filled with data
+// TODO: textfields validation and errors, navigation bar background image, results to CoreData
 
 import UIKit
 
@@ -16,6 +16,7 @@ class CarbonationViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var sugarIndex = 0
     var beerCarbonation = BeerCarbonation()
     
+    @IBOutlet weak var countButton: UIButton!
     @IBOutlet weak var sugarSegmentedControl: UISegmentedControl!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var stylePickerView: UIPickerView!
@@ -24,11 +25,26 @@ class CarbonationViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadMetricSystem()
         stylePickerView.dataSource = self
         stylePickerView.delegate = self
         resultLabel.text = " "
+        countButton.backgroundColor = .systemGray
+        countButton.isEnabled = false
         sugarIndexChanged(0)
         stylePickerView.selectRow(0, inComponent: 0, animated: true)
+        [amountToBottle, temperatureOfBottling].forEach { (field) in
+            field?.addTarget(self,
+                             action: #selector(editingChanged(_:)),
+                             for: .editingChanged)
+        }
+    }
+    
+    @objc private func editingChanged(_ textField: UITextField) {
+        guard let amountToBottle = amountToBottle, let temperatureOfBottling = temperatureOfBottling
+        else { return }
+        let textFields = [amountToBottle, temperatureOfBottling]
+        textFields.enableButton(countButton)
     }
     
     @IBAction func sugarIndexChanged(_ sender: Any) {
@@ -59,12 +75,18 @@ class CarbonationViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func countButtonPressed(_ sender: Any) {
         let amount = amountToBottle.text!
         let temperature = temperatureOfBottling.text!
+        
         if maxCarbonation == 0 {
             maxCarbonation = beerCarbonation.styles[0].maxCarbonation
             minCarbonation = beerCarbonation.styles[0].minCarbonation
         }
-        let result = beerCarbonation.carbonationCalculation(primerType: sugarIndex, maxForChosenStyle: maxCarbonation, minForChosenStyle: minCarbonation, amount: amount, temperature: temperature)
-        resultLabel.text = result
+
+        switch beerCarbonation.calculateCarbonation(primerType: sugarIndex, maxForChosenStyle: maxCarbonation, minForChosenStyle: minCarbonation, amount: amount, temperature: temperature) {
+        case .success(let result):
+            resultLabel.text = result
+        case .failure(let error):
+            wrongData(error: error.rawValue, countButton: countButton)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,4 +94,3 @@ class CarbonationViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.touchesBegan(touches, with: event)
     }
 }
-

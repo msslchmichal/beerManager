@@ -4,20 +4,15 @@
 //
 //  Created by Michał Massloch on 17/10/2021.
 //
-// TODO: result
+// TODO: tableview to extension
 
 import UIKit
 import CoreData
 
-class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
-
-    func add(_ controller: NewHopViewController, didFinish hop: Hop) {
-        hopArray.append(hop)
-        tableView.reloadData()
-        navigationController?.popViewController(animated: true)
-    }
+class IBUViewController: UITableViewController {
+    
     var hopArray = [Hop]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let coreDataManager = CoreDataManager()
     
     @IBOutlet weak var resultLabel: UILabel!
     
@@ -25,7 +20,6 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
         super.viewDidLoad()
         self.registerTableViewCells()
         loadItems()
-        resultLabel.text = ""
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,7 +31,6 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "IBUTableViewCell") as? IBUTableViewCell {
             cell.hopNameCustomCell?.text = hopArray[indexPath.row].name
             cell.hopResultCustomCell?.text = hopArray[indexPath.row].result
-            //updateResult(resultValue:Double(hopArray[indexPath.row].result.reduce(0, +)))
             return cell
         }
         return UITableViewCell()
@@ -49,9 +42,10 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        context.delete(hopArray[indexPath.row])
+        coreDataManager.delete(hopArray[indexPath.row])
         hopArray.remove(at: indexPath.row)
-        saveItems()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        updateResult()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -59,42 +53,51 @@ class IBUViewController: UITableViewController, NewHopViewControllerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("in prepare")
-        if segue.identifier == "addItem" {
-            let controller = segue.destination as! NewHopViewController
-            controller.delegate = self
+        
+        guard let segueIdentifier = segue.identifier
+        else { return }
+        if segueIdentifier == "addItem" {
+            guard let newHopViewController = segue.destination as? NewHopViewController
+            else { return }
+            newHopViewController.delegate = self
+            newHopViewController.coreDataManager = coreDataManager
         }
-        else {
-        guard let detailViewController = segue.destination as? HopDetailViewController,
-                  let index = tableView.indexPathForSelectedRow?.row
-                else {
-                    return
+        else if segueIdentifier == "fromTableToDetail" {
+            guard let indexPath = tableView.indexPathForSelectedRow
+            else { return }
+            let hop = hopArray[indexPath.row]
+            if let detailViewController = segue.destination as? HopDetailViewController {
+                detailViewController.hop = hop
             }
-        detailViewController.hop = hopArray[index]
         }
     }
-
+    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
     }
     
-    func updateResult(resultValue: Double) {
-        resultLabel.text = "RESULT: \(resultValue)" 
+    func updateResult() {
+        let totalResult = hopArray.reduce(0) { (partialResult, hop) in
+            guard let result = hop.result,
+                  let sumOfResults = Double(result)
+            else { return partialResult }
+            return partialResult + sumOfResults
+        }
+        resultLabel.text = "RESULT: \(totalResult)"
     }
     
-    func saveItems(){
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
-        self.tableView.reloadData()
-    }
-    func loadItems(with request: NSFetchRequest<Hop> = Hop.fetchRequest()) {
-        do {
-            hopArray = try context.fetch(request)
-        } catch {
-            print(error)
-        }
+    func loadItems() {
+        hopArray = coreDataManager.fetchHops()
+        updateResult()
         tableView.reloadData()
+    }
+}
+
+extension IBUViewController: NewHopViewControllerDelegate {
+    func add(_ controller: NewHopViewController, didFinish hop: Hop) {
+        coreDataManager.save(hop)
+        hopArray.append(hop)
+        tableView.reloadData()
+        navigationController?.popViewController(animated: true)
+        updateResult()
     }
 }

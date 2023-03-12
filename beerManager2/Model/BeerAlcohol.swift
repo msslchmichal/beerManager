@@ -9,30 +9,31 @@ import Foundation
 
 struct BeerAlcohol {
     
-    enum UserDataError: String {
+    enum UserDataError: String, Error {
         case inputIsNotAboveZero = "Input is not above 0"
-        case emptyTextField = "Empty texfield"
+        case emptyTextField = "Empty text field"
         case unknownError = "Unknown error"
         case sameOGandFG = "OG and FG can't be equal"
+        case FGcantBeMoreThanOG = "FG can't be higher than OG"
     }
     
-    func alcCountingFunc(og: String?, fg: String?) -> String {
+    func calculateAlcoholPercentage(og: String?, fg: String?) -> Result<Double, UserDataError> {
         
-        guard let unwrappedOg = og, let unwrappedFg = fg else {
-            return UserDataError.emptyTextField.rawValue
-        }
-        guard let unwrappedOgDouble = Double(unwrappedOg), let unwrappedFgDouble = Double(unwrappedFg) else {
-            return UserDataError.unknownError.rawValue
-        }
-        if unwrappedOgDouble == 0.0 || unwrappedFgDouble == 0.0 {
-            return UserDataError.inputIsNotAboveZero.rawValue
-        }
-        else if unwrappedOgDouble == unwrappedFgDouble {
-            return UserDataError.sameOGandFG.rawValue
-        }
-        else {
-            let result = String(format: "%.2f", ((unwrappedOgDouble-unwrappedFgDouble)/1.938))
-            return result
+        guard let og = og, let fg = fg
+            else { return .failure(.emptyTextField) }
+        guard let ogDouble = Double(og), let fgDouble = Double(fg)
+            else { return .failure(.unknownError) }
+        
+        switch (ogDouble, fgDouble) {
+        case (0.0, _), (_, 0.0):
+            return .failure(.inputIsNotAboveZero)
+        case (let og, let fg) where og == fg:
+            return .failure(.sameOGandFG)
+        case (let og, let fg) where og < fg:
+            return .failure(.FGcantBeMoreThanOG)
+        case let (og, fg):
+            let result = (og - fg) / 1.938
+            return .success(result)
         }
     }
 }
